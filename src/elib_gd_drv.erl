@@ -63,13 +63,13 @@ init ([]) ->
   process_flag (trap_exit, true),
 
   case os:type () of
-    { win32, _Flavor } ->
-      ignore;
-
-    { unix, freebsd } ->
+    {win32,_Flavor} -> ignore;
+    {unix,freebsd} ->
       ok = erl_ddll:load_driver (code:priv_dir (elib_gd), atom_to_list (?DRIVER)),
-
-      { ok, #state{} }
+      {ok, #state{}};
+    {unix,darwin} ->
+      ok = erl_ddll:load_driver (code:priv_dir (elib_gd), atom_to_list (?DRIVER)),
+      {ok, #state{}}
   end.
 
 %%====================================================================
