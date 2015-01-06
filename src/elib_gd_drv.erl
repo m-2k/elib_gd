@@ -72,7 +72,7 @@ init ([]) ->
       {ok, #state{}};
     {unix,linux} ->
       ok = erl_ddll:load_driver (code:priv_dir (elib_gd), atom_to_list (?DRIVER)),
-      {ok, #state{}};
+      {ok, #state{}}
   end.
 
 %%====================================================================
